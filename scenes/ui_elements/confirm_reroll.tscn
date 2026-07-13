@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://brj520v5jc1au"]
+
+[ext_resource type="Texture2D" uid="uid://xmyrr21vq87k" path="res://assets/close.svg" id="1_i6h1s"]
+[ext_resource type="Script" uid="uid://cy4rlgvjtaf0m" path="res://scripts/ui_elements/confirm_reroll.gd" id="1_yjet2"]
+[ext_resource type="Texture2D" uid="uid://dlxi0qxu3g664" path="res://assets/check.svg" id="2_yjet2"]
+[ext_resource type="Theme" uid="uid://d1cb6v5m03epb" path="res://resources/default_theme.tres" id="4_anyjl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ka64"]
+font_size = 34
+outline_color = Color(0, 0, 0, 1)
+
+[node name="confirm_reroll" type="Control" unique_id=275292724]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = -584.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yjet2")
+
+[node name="Label" type="Label" parent="." unique_id=304966975]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+text = "Reroll?"
+label_settings = SubResource("LabelSettings_7ka64")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="no" type="Sprite2D" parent="." unique_id=252540984]
+position = Vector2(224, 32)
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("1_i6h1s")
+
+[node name="yes" type="Sprite2D" parent="." unique_id=1456609128]
+position = Vector2(160, 32)
+scale = Vector2(0.3333333, 0.33333334)
+texture = ExtResource("2_yjet2")
+
+[node name="yes_button" type="Button" parent="." unique_id=251592728]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 192.0
+offset_bottom = 64.0
+theme = ExtResource("4_anyjl")
+
+[node name="no_button" type="Button" parent="." unique_id=1594910260]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 256.0
+offset_bottom = 64.0
+theme = ExtResource("4_anyjl")
+
+[connection signal="pressed" from="yes_button" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="no_button" to="." method="_on_no_button_pressed"]
