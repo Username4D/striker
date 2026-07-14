@@ -5,6 +5,8 @@ extends Control
 
 @export var interactable = false
 
+var changes = 0
+
 func update():
 	for i in $HFlowContainer.get_children():
 		i.color_name = i.name
@@ -24,6 +26,7 @@ func update():
 
 
 func finalize():
+	changes = 0
 	for i in player.row_states[player.current_row]:
 		var dice_state = player.row_states[player.current_row][i]
 		if $HFlowContainer.get_node(i).button_pressed:
@@ -36,3 +39,9 @@ func _on_finish_button_pressed() -> void:
 	$HFlowContainer.position.x = 32
 	$finish_button.visible = false
 	self.process_mode = Node.PROCESS_MODE_DISABLED
+
+func _process(delta: float) -> void:
+	var should_be_visible = false
+	for i in $HFlowContainer.get_children():
+		if i.has_changed: should_be_visible = true
+	if should_be_visible != $finish_button.visible: $finish_button.visible = should_be_visible

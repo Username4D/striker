@@ -8,6 +8,7 @@ func _ready() -> void:
 	$Cube_001.mesh = cube_mesh
 
 func throw():
+	freeze = false
 	self.apply_central_impulse(Vector3(randf_range(-1,1), randf_range(3, 5), randf_range(-1, 1)))
 	self.apply_torque_impulse(Vector3(randf_range(-.07, .07), randf_range(-.07, .07), randf_range(-.07, .07)))
 	

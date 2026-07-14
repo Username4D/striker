@@ -42,6 +42,8 @@ func turn():
 				i.thrown.connect(func(): reroll_finished_dice += 1)
 				i.throw()
 				reroll_dice_amount += 1
+			else:
+				i.freeze = true
 		while reroll_finished_dice != reroll_dice_amount:
 			await get_tree().process_frame
 	

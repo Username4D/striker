@@ -4,6 +4,7 @@ extends Button
 @export var color_name: String
 @export var row: Dictionary
 @export var read_only: bool
+@export var has_changed = false
 
 func _ready() -> void:
 	if color == Color.BLACK:
@@ -34,6 +35,10 @@ func _on_toggled(toggled_on: bool) -> void:
 			text = str(GameStateHandler.current_dice_set[color_name])
 	else:
 		text = str(row[color_name].number)
+	if self.button_pressed == true and row[color_name].set_value == -1:
+		has_changed = true
+	else:
+		has_changed = false
 
 
 
