@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://btyqiyp03q5cq"]
+
+[ext_resource type="Shader" uid="uid://dc24fwkesfhqe" path="res://resources/hue_shift.gdshader" id="1_dc7un"]
+[ext_resource type="Script" uid="uid://cyqbf35pomhie" path="res://scripts/ui_elements/card_item.gd" id="1_dk834"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk834"]
+resource_local_to_scene = true
+shader = ExtResource("1_dc7un")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ka64"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlsso"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk834"]
+bg_color = Color(0.41, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.41, 0, 0, 1)
+
+[node name="card_item" type="Button" unique_id=545025259]
+material = SubResource("ShaderMaterial_dk834")
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.70980394)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ka64")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rlsso")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ka64")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_dk834")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7ka64")
+toggle_mode = true
+text = "1"
+autowrap_mode = 1
+script = ExtResource("1_dk834")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

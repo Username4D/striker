@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://cn8yib0x1jit1"]
+
+[ext_resource type="Script" uid="uid://bh3nqnbmialsg" path="res://scripts/ui_elements/player_card.gd" id="1_2gk82"]
+[ext_resource type="PackedScene" uid="uid://btyqiyp03q5cq" path="res://scenes/ui_elements/card_item.tscn" id="2_pxbq4"]
+[ext_resource type="Shader" uid="uid://dc24fwkesfhqe" path="res://resources/hue_shift.gdshader" id="3_3ujav"]
+[ext_resource type="Theme" uid="uid://d1cb6v5m03epb" path="res://resources/default_theme.tres" id="4_3ujav"]
+[ext_resource type="Texture2D" uid="uid://dlxi0qxu3g664" path="res://assets/check.svg" id="5_ub1w4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gk82"]
+resource_local_to_scene = true
+shader = ExtResource("3_3ujav")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxbq4"]
+resource_local_to_scene = true
+shader = ExtResource("3_3ujav")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ujav"]
+resource_local_to_scene = true
+shader = ExtResource("3_3ujav")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ub1w4"]
+resource_local_to_scene = true
+shader = ExtResource("3_3ujav")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_453wi"]
+resource_local_to_scene = true
+shader = ExtResource("3_3ujav")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yj4oa"]
+resource_local_to_scene = true
+shader = ExtResource("3_3ujav")
+shader_parameter/shift_amount = 360.0
+shader_parameter/black = false
+
+[node name="player_card" type="Control" unique_id=639381253]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = -520.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gk82")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=854744298]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="red" parent="HFlowContainer" unique_id=545025259 instance=ExtResource("2_pxbq4")]
+material = SubResource("ShaderMaterial_2gk82")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 0, 0, 1)
+color_name = "red"
+
+[node name="pink" parent="HFlowContainer" unique_id=449096189 instance=ExtResource("2_pxbq4")]
+material = SubResource("ShaderMaterial_pxbq4")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 0, 1, 1)
+color_name = "pink"
+
+[node name="yellow" parent="HFlowContainer" unique_id=666992275 instance=ExtResource("2_pxbq4")]
+material = SubResource("ShaderMaterial_3ujav")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color_name = "yellow"
+
+[node name="blue" parent="HFlowContainer" unique_id=984933327 instance=ExtResource("2_pxbq4")]
+material = SubResource("ShaderMaterial_ub1w4")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 1, 1)
+color_name = "blue"
+
+[node name="green" parent="HFlowContainer" unique_id=1378328698 instance=ExtResource("2_pxbq4")]
+material = SubResource("ShaderMaterial_453wi")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0.5803922, 0, 1)
+color_name = "green"
+
+[node name="black" parent="HFlowContainer" unique_id=1998737403 instance=ExtResource("2_pxbq4")]
+material = SubResource("ShaderMaterial_yj4oa")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+color_name = "black"
+
+[node name="finish_button" type="Button" parent="." unique_id=2039127513]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 256.0
+offset_bottom = 96.0
+theme = ExtResource("4_3ujav")
+icon = ExtResource("5_ub1w4")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="finish_button" to="." method="_on_finish_button_pressed"]

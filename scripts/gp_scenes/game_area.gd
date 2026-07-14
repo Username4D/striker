@@ -23,6 +23,7 @@ func turn():
 	
 	$confirm_reroll.visible = true
 	var do_reroll_callback = await $confirm_reroll.do_reroll
+	$confirm_reroll.visible = false
 	if do_reroll_callback:
 		reroll_finished_dice = 0
 		reroll_dice_amount = 0
@@ -33,6 +34,12 @@ func turn():
 				reroll_dice_amount += 1
 		while reroll_finished_dice != reroll_dice_amount:
 			await get_tree().process_frame
-
+	
+	GameStateHandler.current_dice_set = {}
+	for i in $dice.get_children():
+		GameStateHandler.current_dice_set[i.name] = i.number
+	
+	$player_card.visible = true
+	$player_card.update()
 func _ready() -> void:
 	turn()
