@@ -25,9 +25,15 @@ func turn():
 	while finished_dice != dice_amount:
 		await get_tree().process_frame
 	
+	GameStateHandler.current_dice_set = {}
+	for i in $dice.get_children():
+		GameStateHandler.current_dice_set[i.name] = i.number
+	
 	$ui_boxes.get_child(current_seat).show_component("confirm_reroll", true)
+	$ui_boxes.get_child(current_seat).show_component("player_card", true, false)
 	var do_reroll_callback = await $ui_boxes.get_child(current_seat).do_reroll
 	$ui_boxes.get_child(current_seat).show_component("confirm_reroll", false)
+	$ui_boxes.get_child(current_seat).show_component("player_card", false)
 	if do_reroll_callback:
 		reroll_finished_dice = 0
 		reroll_dice_amount = 0

@@ -3,6 +3,7 @@ extends Button
 @export var color: Color
 @export var color_name: String
 @export var row: Dictionary
+@export var read_only: bool
 
 func _ready() -> void:
 	if color == Color.BLACK:
@@ -15,8 +16,30 @@ func update():
 	if row[color_name].crossed:
 		self.disabled = true
 	
-	if GameStateHandler.current_dice_set[color_name] > row[color_name].number or row[color_name].set_value != -1:
-		self.button_pressed = row[color_name].set_value != -1
-		self.modulate.a = 0.5 if row[color_name].set_value == -1 else 1.0
-		text = str(row[color_name].set_value) if row[color_name].set_value != -1 else str(row[color_name].number)
+	if row[color_name].set_value != -1:
+		self.button_pressed = true
+		text = str(row[color_name].set_value)
 		self.process_mode = Node.PROCESS_MODE_DISABLED
+		
+	if GameStateHandler.current_dice_set[color_name] > row[color_name].number:
+		self.button_pressed = false
+		self.modulate.a = 0.5
+		text = str(row[color_name].number)
+		self.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		if row[color_name].set_value == -1:
+			text = str(GameStateHandler.current_dice_set[color_name])
+	else:
+		text = str(row[color_name].number)
+
+
+
+func _on_button_down() -> void:
+	_on_toggled(!button_pressed)
+
+
+func _on_button_up() -> void:
+	_on_toggled(button_pressed)

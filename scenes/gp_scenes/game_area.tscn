@@ -13,8 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bn36hl5h0g0te" path="res://assets/materials/wood_1/Wood067_4K-PNG_Roughness.png" id="5_mgjcj"]
 [ext_resource type="Texture2D" uid="uid://7p7khakwmawm" path="res://assets/dice_Untitled_4.png" id="6_3cxdp"]
 [ext_resource type="Texture2D" uid="uid://c3yecirmebk8v" path="res://assets/dice_Untitled_5.png" id="7_vji01"]
-[ext_resource type="PackedScene" uid="uid://brj520v5jc1au" path="res://scenes/ui_elements/confirm_reroll.tscn" id="9_kfuts"]
-[ext_resource type="PackedScene" uid="uid://cn8yib0x1jit1" path="res://scenes/ui_elements/player_card.tscn" id="10_agjbl"]
 [ext_resource type="PackedScene" uid="uid://dgygspu31wuq0" path="res://scenes/ui_elements/player_ui_box.tscn" id="16_2livq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6eotn"]
@@ -44,7 +42,7 @@ size = Vector3(2.5, 0.5, 1.625)
 resource_name = "Material"
 cull_mode = 2
 albedo_texture = ExtResource("2_o1aow")
-roughness = 0.25
+roughness = 0.6
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_d638u"]
@@ -85,7 +83,7 @@ shadow_mesh = SubResource("ArrayMesh_d638u")
 resource_name = "Material.001"
 cull_mode = 2
 albedo_texture = ExtResource("3_kfuts")
-roughness = 0.25
+roughness = 0.6
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4u15n"]
@@ -126,7 +124,7 @@ shadow_mesh = SubResource("ArrayMesh_4u15n")
 resource_name = "Material.002"
 cull_mode = 2
 albedo_texture = ExtResource("4_agjbl")
-roughness = 0.25
+roughness = 0.6
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gtkbs"]
@@ -167,7 +165,7 @@ shadow_mesh = SubResource("ArrayMesh_gtkbs")
 resource_name = "Material.003"
 cull_mode = 2
 albedo_texture = ExtResource("5_8gbmp")
-roughness = 0.25
+roughness = 0.6
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sjkfy"]
@@ -208,7 +206,7 @@ shadow_mesh = SubResource("ArrayMesh_sjkfy")
 resource_name = "Material.004"
 cull_mode = 2
 albedo_texture = ExtResource("6_3cxdp")
-roughness = 0.25
+roughness = 0.6
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aq0r5"]
@@ -249,7 +247,7 @@ shadow_mesh = SubResource("ArrayMesh_aq0r5")
 resource_name = "Material.005"
 cull_mode = 2
 albedo_texture = ExtResource("7_vji01")
-roughness = 0.25
+roughness = 0.6
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_p48av"]
@@ -392,20 +390,6 @@ shape = SubResource("BoxShape3D_7ka64")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="walls/StaticBody3D" unique_id=323930748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 0)
 shape = SubResource("BoxShape3D_7ka64")
-
-[node name="confirm_reroll" parent="." unique_id=275292724 instance=ExtResource("9_kfuts")]
-visible = false
-offset_left = 448.0
-offset_top = 576.0
-offset_right = -448.0
-offset_bottom = -8.0
-
-[node name="player_card" parent="." unique_id=639381253 instance=ExtResource("10_agjbl")]
-visible = false
-offset_left = 512.0
-offset_top = 508.0
-offset_right = -384.0
-offset_bottom = -12.0
 
 [node name="wall_meshes" type="Node3D" parent="." unique_id=1696258918]
 
@@ -555,4 +539,3 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_agjbl")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gbmp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3cxdp")
 action_mode = 0
-text = "Tap screen to roll"

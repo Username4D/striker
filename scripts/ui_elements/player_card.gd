@@ -3,11 +3,24 @@ extends Control
 @export var player: Resource
 @export var finished = false
 
+@export var interactable = false
+
 func update():
 	for i in $HFlowContainer.get_children():
 		i.color_name = i.name
 		i.row = player.row_states[player.current_row]
+		i.read_only = !interactable
 		i.update()
+	
+	$finish_button.visible = interactable
+	if !interactable: self.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	var children = $HFlowContainer.get_children()
+	children.sort_custom(func(a, b): return a.row[a.color_name].number > b.row[b.color_name].number)
+	
+	for i in range(children.size()):
+		$HFlowContainer.move_child(children[i], i)
+	
 
 
 func finalize():
