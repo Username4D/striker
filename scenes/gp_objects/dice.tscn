@@ -127,6 +127,7 @@ target_position = Vector3(0, 0, 0.13)
 target_position = Vector3(0, 0, -0.13)
 
 [node name="number" type="Label" parent="." unique_id=1767118654]
+visible = false
 offset_right = 139.0
 offset_bottom = 105.0
 label_settings = SubResource("LabelSettings_6eotn")

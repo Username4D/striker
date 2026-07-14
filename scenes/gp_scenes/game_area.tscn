@@ -2,18 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://gkhj7twfvwt8" path="res://scenes/gp_objects/dice.tscn" id="1_6eotn"]
 [ext_resource type="Script" uid="uid://de2acbdigp0wm" path="res://scripts/gp_scenes/game_area.gd" id="1_o1aow"]
+[ext_resource type="Material" uid="uid://gmrnad2jrebf" path="res://assets/materials/wood_1/Wood067_4K-PNG.tres" id="2_8gbmp"]
+[ext_resource type="Texture2D" uid="uid://bihpox7jlhei8" path="res://assets/materials/wood_1/Wood067_4K-PNG_Color.png" id="2_cv3ex"]
 [ext_resource type="Texture2D" uid="uid://bufvbnu2fu2ht" path="res://assets/dice_Untitled.png" id="2_o1aow"]
+[ext_resource type="Texture2D" uid="uid://be76pk2r5ntxa" path="res://assets/materials/wood_1/Wood067_4K-PNG_Displacement.png" id="3_2livq"]
 [ext_resource type="Texture2D" uid="uid://bdvcb8up08woa" path="res://assets/dice_Untitled_1.png" id="3_kfuts"]
 [ext_resource type="Texture2D" uid="uid://d3cv275kohdd4" path="res://assets/dice_Untitled_2.png" id="4_agjbl"]
+[ext_resource type="Texture2D" uid="uid://cpk2a7t6xjohm" path="res://assets/materials/wood_1/Wood067_4K-PNG_NormalGL.png" id="4_jg0j1"]
 [ext_resource type="Texture2D" uid="uid://c1vyael1r2qat" path="res://assets/dice_Untitled_3.png" id="5_8gbmp"]
+[ext_resource type="Texture2D" uid="uid://bn36hl5h0g0te" path="res://assets/materials/wood_1/Wood067_4K-PNG_Roughness.png" id="5_mgjcj"]
 [ext_resource type="Texture2D" uid="uid://7p7khakwmawm" path="res://assets/dice_Untitled_4.png" id="6_3cxdp"]
 [ext_resource type="Texture2D" uid="uid://c3yecirmebk8v" path="res://assets/dice_Untitled_5.png" id="7_vji01"]
 [ext_resource type="PackedScene" uid="uid://brj520v5jc1au" path="res://scenes/ui_elements/confirm_reroll.tscn" id="9_kfuts"]
 [ext_resource type="PackedScene" uid="uid://cn8yib0x1jit1" path="res://scenes/ui_elements/player_card.tscn" id="10_agjbl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6eotn"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(0.02205582, 0.010341879, 0.32349595, 1)
+sky_horizon_color = Color(0.02205582, 0.010341879, 0.32349595, 1)
+ground_bottom_color = Color(0.01337935, 1.2947172e-05, 0.07277272, 1)
+ground_horizon_color = Color(0.02205582, 0.010341879, 0.32349595, 1)
 
 [sub_resource type="Sky" id="Sky_o1aow"]
 sky_material = SubResource("ProceduralSkyMaterial_6eotn")
@@ -21,12 +28,15 @@ sky_material = SubResource("ProceduralSkyMaterial_6eotn")
 [sub_resource type="Environment" id="Environment_kfuts"]
 background_mode = 2
 sky = SubResource("Sky_o1aow")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y86nj"]
 size = Vector3(10, 0.5, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lgf5n"]
-size = Vector3(10, 0.5, 10)
+material = ExtResource("2_8gbmp")
+size = Vector3(2.5, 0.5, 1.625)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hh1nj"]
 resource_name = "Material"
@@ -290,12 +300,34 @@ size = Vector3(0.5, 4, 2)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cxdp"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm3fn"]
+albedo_texture = ExtResource("2_cv3ex")
+roughness_texture = ExtResource("5_mgjcj")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("4_jg0j1")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("3_2livq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_cv3ex"]
+material = SubResource("StandardMaterial3D_bm3fn")
+size = Vector3(3.25, 0.5, 1.625)
+
 [node name="game_area" type="Node3D" unique_id=1291422855]
 script = ExtResource("1_o1aow")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=462406397]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -2.875, 0, 0)
+light_color = Color(0.76, 0.53618, 0.3268, 1)
+light_energy = 0.628
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 8.053
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.824
+directional_shadow_split_2 = 0.68
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=577123109]
 environment = SubResource("Environment_kfuts")
@@ -307,7 +339,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_y86nj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1005905230]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.0625)
 mesh = SubResource("BoxMesh_lgf5n")
 
 [node name="dice" type="Node3D" parent="." unique_id=1802721160]
@@ -336,7 +368,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 cube_mesh = SubResource("ArrayMesh_sru4t")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1614091917]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 0, 1.5, 0.375)
 
 [node name="walls" type="Node3D" parent="." unique_id=970851136]
 
@@ -395,3 +427,61 @@ offset_left = 512.0
 offset_top = 508.0
 offset_right = -384.0
 offset_bottom = -12.0
+
+[node name="wall_meshes" type="Node3D" parent="." unique_id=1696258918]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="wall_meshes" unique_id=1743941631]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.875, 0.125, -0.06250012)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="wall_meshes" unique_id=716867365]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, -0.06250012)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="wall_meshes" unique_id=2059816387]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, 1.5624999)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="wall_meshes" unique_id=880305373]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.375, 0.125, 1.5624999)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="wall_meshes" unique_id=303580228]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, 1.5624999)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="wall_meshes" unique_id=475555338]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, -1.6875001)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="wall_meshes" unique_id=1139036360]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.375, 0.125, -1.6875001)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="wall_meshes" unique_id=616229045]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, -1.6875001)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="wall_meshes" unique_id=1811274901]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, -3.3125)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="wall_meshes" unique_id=1715666777]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.375, 0.125, -3.3125)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="wall_meshes" unique_id=136253277]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, -3.3125)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="wall_meshes" unique_id=1253604603]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, 3.0625)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="wall_meshes" unique_id=1596262807]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.375, 0.125, 3.0625)
+mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="wall_meshes" unique_id=1064088592]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, 3.0625)
+mesh = SubResource("BoxMesh_cv3ex")
