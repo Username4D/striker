@@ -1,3 +1,3 @@
 extends Node
 
-var player = Player.new()
+var players = [Player.new(1), Player.new(2), Player.new(3), Player.new(6)]

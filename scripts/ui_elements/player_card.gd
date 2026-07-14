@@ -9,8 +9,6 @@ func update():
 		i.row = player.row_states[player.current_row]
 		i.update()
 
-func _ready() -> void:
-	player = PlayerHandler.player
 
 func finalize():
 	for i in player.row_states[player.current_row]:

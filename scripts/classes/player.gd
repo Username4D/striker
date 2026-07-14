@@ -6,6 +6,7 @@ var current_row = 0
 var row_states = []
 
 var row_types = [[6,5,4,3,2,1], [6,5,4,3,2,1], [6,5,4,3,2,1], [5,5,4,4,2,1], [5,5,4,3,3,1], [6,4,4,3,3,1]]
+var screen_position: int
 
 func add_row_state():
 	var dict = {}
@@ -15,9 +16,9 @@ func add_row_state():
 	for i in range(0, len(keys)):
 		dict[keys[i]] = DiceState.new(balance[i])
 	dict.sort()
-	print(dict)
 	row_states.append(dict)
 
-func _init() -> void:
+func _init(_screen_position) -> void:
 	for i in range(0, 4):
 		add_row_state()
+	screen_position = _screen_position

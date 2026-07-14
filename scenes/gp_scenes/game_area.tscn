@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c3yecirmebk8v" path="res://assets/dice_Untitled_5.png" id="7_vji01"]
 [ext_resource type="PackedScene" uid="uid://brj520v5jc1au" path="res://scenes/ui_elements/confirm_reroll.tscn" id="9_kfuts"]
 [ext_resource type="PackedScene" uid="uid://cn8yib0x1jit1" path="res://scenes/ui_elements/player_card.tscn" id="10_agjbl"]
+[ext_resource type="PackedScene" uid="uid://dgygspu31wuq0" path="res://scenes/ui_elements/player_ui_box.tscn" id="16_2livq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6eotn"]
 sky_top_color = Color(0.02205582, 0.010341879, 0.32349595, 1)
@@ -291,16 +292,6 @@ size = Vector3(3.5, 4, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ka64"]
 size = Vector3(0.5, 4, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1aow"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfuts"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agjbl"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gbmp"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cxdp"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm3fn"]
 albedo_texture = ExtResource("2_cv3ex")
 roughness_texture = ExtResource("5_mgjcj")
@@ -314,6 +305,16 @@ heightmap_texture = ExtResource("3_2livq")
 [sub_resource type="BoxMesh" id="BoxMesh_cv3ex"]
 material = SubResource("StandardMaterial3D_bm3fn")
 size = Vector3(3.25, 0.5, 1.625)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1aow"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfuts"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agjbl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gbmp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cxdp"]
 
 [node name="game_area" type="Node3D" unique_id=1291422855]
 script = ExtResource("1_o1aow")
@@ -370,7 +371,7 @@ cube_mesh = SubResource("ArrayMesh_sru4t")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1614091917]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 0, 1.5, 0.375)
-fov = 83.0
+fov = 98.0
 
 [node name="walls" type="Node3D" parent="." unique_id=970851136]
 
@@ -391,30 +392,6 @@ shape = SubResource("BoxShape3D_7ka64")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="walls/StaticBody3D" unique_id=323930748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 0)
 shape = SubResource("BoxShape3D_7ka64")
-
-[node name="roll_button" type="Button" parent="." unique_id=310452852]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxEmpty_o1aow")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kfuts")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_agjbl")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gbmp")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3cxdp")
-action_mode = 0
-text = "Tap screen to roll"
 
 [node name="confirm_reroll" parent="." unique_id=275292724 instance=ExtResource("9_kfuts")]
 visible = false
@@ -487,3 +464,95 @@ mesh = SubResource("BoxMesh_cv3ex")
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="wall_meshes" unique_id=1064088592]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, 3.0625)
 mesh = SubResource("BoxMesh_cv3ex")
+
+[node name="ui_boxes" type="Control" parent="." unique_id=551479787]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+mouse_filter = 1
+
+[node name="1" parent="ui_boxes" unique_id=1228318020 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 240.0
+offset_right = 240.0
+offset_bottom = 400.0
+rotation = 1.5707964
+
+[node name="2" parent="ui_boxes" unique_id=349126085 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 448.0
+offset_right = 416.0
+offset_bottom = 608.0
+
+[node name="3" parent="ui_boxes" unique_id=1358606390 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 448.0
+offset_right = 704.0
+offset_bottom = 608.0
+
+[node name="4" parent="ui_boxes" unique_id=122401649 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 448.0
+offset_right = 992.0
+offset_bottom = 608.0
+
+[node name="5" parent="ui_boxes" unique_id=1897285655 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 240.0
+offset_right = 1168.0
+offset_bottom = 400.0
+rotation = -1.5707964
+
+[node name="6" parent="ui_boxes" unique_id=1982051340 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 32.0
+offset_right = 992.0
+offset_bottom = 192.0
+rotation = 3.1415927
+
+[node name="7" parent="ui_boxes" unique_id=577922217 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 192.0
+rotation = 3.1415927
+
+[node name="8" parent="ui_boxes" unique_id=1603411559 instance=ExtResource("16_2livq")]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 416.0
+offset_bottom = 192.0
+rotation = 3.1415927
+
+[node name="roll_button" type="Button" parent="." unique_id=310452852]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o1aow")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kfuts")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_agjbl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gbmp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3cxdp")
+action_mode = 0
+text = "Tap screen to roll"
