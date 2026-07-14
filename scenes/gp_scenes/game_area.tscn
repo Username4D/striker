@@ -29,7 +29,8 @@ sky_material = SubResource("ProceduralSkyMaterial_6eotn")
 background_mode = 2
 sky = SubResource("Sky_o1aow")
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(1, 0.845, 0.69, 1)
+ambient_light_energy = 2.31
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y86nj"]
 size = Vector3(10, 0.5, 10)
@@ -320,7 +321,7 @@ script = ExtResource("1_o1aow")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=462406397]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -2.875, 0, 0)
 light_color = Color(0.76, 0.53618, 0.3268, 1)
-light_energy = 0.628
+light_energy = 0.314
 light_indirect_energy = 16.0
 light_volumetric_fog_energy = 8.053
 shadow_enabled = true
@@ -369,6 +370,7 @@ cube_mesh = SubResource("ArrayMesh_sru4t")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1614091917]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 0, 1.5, 0.375)
+fov = 83.0
 
 [node name="walls" type="Node3D" parent="." unique_id=970851136]
 

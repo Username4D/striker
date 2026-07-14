@@ -14,24 +14,22 @@ func throw():
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
-	while Vector3.ZERO.distance_to(linear_velocity) > 0.01 or Vector3.ZERO.distance_to(angular_velocity) > 0.01:
+	while Vector3.ZERO.distance_to(linear_velocity) > 0.001 or Vector3.ZERO.distance_to(angular_velocity) > 0.001:
 		await get_tree().physics_frame
 
 	var floor_collider: Node
-	var has_dice_collider: bool = false
 	for i in $rays.get_children():
 		if i.get_collider() != null:
 			if i.get_collider().is_in_group("floor"):
 				floor_collider = i
-			elif i.get_collider().is_in_group("dice"):
-				has_dice_collider = true
 	
-	if floor_collider and !has_dice_collider:
+	if floor_collider:
 		$number.text = str(7 - int(floor_collider.name))
 		$number.position = get_viewport().get_camera_3d().unproject_position(self.position)
 		number = 7 - int(floor_collider.name)
 		thrown.emit()
 	else:
+		await get_tree().create_timer(0.8).timeout
 		throw()
 
 func _input(event: InputEvent) -> void:
