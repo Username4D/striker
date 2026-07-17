@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://n336ri5j6a7g"]
+
+[ext_resource type="Texture2D" uid="uid://bh5iqcx7cibxl" path="res://assets/next_turn.png" id="1_5bn4a"]
+[ext_resource type="Script" uid="uid://36hprshwkcal" path="res://scripts/ui_popups/next_turn.gd" id="1_t4mjn"]
+
+[sub_resource type="Animation" id="Animation_5bn4a"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("next turn/NextTurn:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("next turn/ColorRect:color:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("next turn/ColorRect:color:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("next turn/ColorRect:color:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("next turn/ColorRect:color:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("next turn/NextTurn:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("next turn/player_indicator/Polygon2D:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t4mjn"]
+resource_name = "next_turn"
+length = 2.5000000000000004
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("next turn/NextTurn:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.955, -0.33333334, -1.0471976, 0, 0),
+"times": PackedFloat32Array(0, 2.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("next turn/ColorRect:color:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0, 0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0, 0, -0.08725, 0, 0.08725, 0, 0, -0.41224998, 0, 0.41224998, 0, 0, -0.087500006, 0, 0.087500006, 0),
+"times": PackedFloat32Array(0.0009999999, 0.35, 2.15, 2.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("next turn/ColorRect:color:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0, 0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0, 0, -0.08725, 0, 0.08725, 0, 0, -0.41224998, 0, 0.41224998, 0, 0, -0.087500006, 0, 0.087500006, 0),
+"times": PackedFloat32Array(0.0009999999, 0.35, 2.15, 2.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("next turn/ColorRect:color:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0, 0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0, 0, -0.08725, 0, 0.08725, 0, 0, -0.41224998, 0, 0.41224998, 0, 0, -0.087500006, 0, 0.087500006, 0),
+"times": PackedFloat32Array(0.0009999999, 0.35, 2.15, 2.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("next turn/ColorRect:color:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0, 0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0, 0.6666667, -0.08725, -0.16666667, 0.08725, 0.16666667, 0.6666667, -0.41224998, -0.16666667, 0.41224998, 0.16666667, 0, -0.087500006, 0.16666667, 0.087500006, -0.16666667),
+"times": PackedFloat32Array(0.0009999999, 0.35, 2.15, 2.5)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("next turn/NextTurn:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.35, 2.15, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("next turn/player_indicator/Polygon2D:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.35, 2.15, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qq8w8"]
+_data = {
+&"RESET": SubResource("Animation_5bn4a"),
+&"next_turn": SubResource("Animation_t4mjn")
+}
+
+[node name="next turn" type="AnimationPlayer" unique_id=821215103]
+libraries/ = SubResource("AnimationLibrary_qq8w8")
+script = ExtResource("1_t4mjn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=780155341]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="NextTurn" type="Sprite2D" parent="." unique_id=473877822]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(576, 324)
+scale = Vector2(0.37499997, 0.37499997)
+texture = ExtResource("1_5bn4a")
+
+[node name="player_indicator" type="Node2D" parent="." unique_id=804253386]
+position = Vector2(576, 324)
+
+[node name="Polygon2D" type="Polygon2D" parent="player_indicator" unique_id=838310275]
+color = Color(1, 1, 1, 0)
+offset = Vector2(0, 4)
+polygon = PackedVector2Array(128, -36, 128, 28, 160, -4)

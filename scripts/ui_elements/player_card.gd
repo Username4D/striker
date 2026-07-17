@@ -8,6 +8,11 @@ extends Control
 var changes = 0
 
 func update():
+	$HFlowContainer.position.x = 0
+	$finish_button.visible = false
+	self.modulate.a = 1
+	finished = false
+	changes = 0
 	for i in $HFlowContainer.get_children():
 		i.color_name = i.name
 		i.row = player.row_states[player.current_row]
@@ -29,8 +34,8 @@ func finalize():
 	changes = 0
 	for i in player.row_states[player.current_row]:
 		var dice_state = player.row_states[player.current_row][i]
-		if $HFlowContainer.get_node(i).button_pressed:
-			dice_state.set_value = GameStateHandler.current_dice_set[$HFlowContainer.get_node(i).color_name]
+		if $HFlowContainer.get_node(i).has_changed:
+			dice_state.set_value = GameStateHandler.current_dice_set[$HFlowContainer.get_node(i).color_name] if $HFlowContainer.get_node(i).text != "0" else 0
 
 func _on_finish_button_pressed() -> void:
 	finalize()

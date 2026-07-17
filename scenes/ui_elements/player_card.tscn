@@ -81,6 +81,7 @@ material = SubResource("ShaderMaterial_453wi")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+color = Color(1, 0.87058824, 0, 1)
 color_name = "yellow"
 
 [node name="blue" parent="HFlowContainer" unique_id=984933327 instance=ExtResource("2_pxbq4")]
@@ -104,7 +105,6 @@ material = SubResource("ShaderMaterial_1bc74")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
 color_name = "black"
 
 [node name="finish_button" type="Button" parent="." unique_id=2039127513]
