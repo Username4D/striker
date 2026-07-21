@@ -9,6 +9,8 @@ func _ready() -> void:
 
 func throw():
 	freeze = false
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	self.apply_central_impulse(Vector3(randf_range(-1,1), randf_range(3, 5), randf_range(-1, 1)))
 	self.apply_torque_impulse(Vector3(randf_range(-.07, .07), randf_range(-.07, .07), randf_range(-.07, .07)))
 	
@@ -29,6 +31,7 @@ func throw():
 		$number.position = get_viewport().get_camera_3d().unproject_position(self.position)
 		number = 7 - int(floor_collider.name)
 		thrown.emit()
+		freeze = true
 	else:
 		await get_tree().create_timer(0.8).timeout
 		throw()
