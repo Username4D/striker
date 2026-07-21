@@ -11,6 +11,7 @@ var screen_position: int
 var points: int = 0
 var previous_points: int = 0
 var bonus_points: int = 0
+var bonus_amount: int = 0
 
 func add_row_state():
 	var dict = {}
@@ -36,4 +37,5 @@ func finish_round():
 		if row_states[current_row][i].set_value == row_states[current_row][i].number: perfect_items += 1
 		print([row_states[current_row][i].set_value,  row_states[current_row][i].number])
 	points += bonus_point_amounts[perfect_items]
+	bonus_amount = perfect_items
 	bonus_points = bonus_point_amounts[perfect_items]
