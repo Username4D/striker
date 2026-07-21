@@ -17,6 +17,7 @@ func _ready() -> void:
 		$final.material.set_shader_parameter("shift_amount", color.h * 360)
 
 func update():
+	$button.process_mode = Node.PROCESS_MODE_INHERIT
 	finished = false
 	$button.add_theme_font_size_override("font_size", 32)
 	has_changed = false
@@ -63,6 +64,8 @@ func _process(delta: float) -> void:
 	text = $button.text if !finished else $final/final_number.text
 
 func finish():
+	print("fin")
+	$button.process_mode = Node.PROCESS_MODE_DISABLED
 	if $button.button_pressed == false:
 		finished = true
 		$final/final_number.text = str(GameStateHandler.current_dice_set[color_name] if GameStateHandler.current_dice_set[color_name] <= row[color_name].number else 0)

@@ -16,6 +16,7 @@ func update():
 	finished = false
 	changes = 0
 	for i in $HFlowContainer.get_children():
+		i.process_mode = Node.PROCESS_MODE_INHERIT
 		i.color_name = i.name
 		i.row = player.row_states[player.current_row]
 		i.read_only = !interactable
@@ -50,6 +51,7 @@ func _on_finish_button_pressed() -> void:
 	$finish_button.visible = false
 	for i in $HFlowContainer.get_children():
 		i.read_only = true
+		i.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(delta: float) -> void:
 	if !finished:
