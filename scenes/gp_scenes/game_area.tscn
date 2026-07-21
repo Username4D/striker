@@ -13,8 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://bn36hl5h0g0te" path="res://assets/materials/wood_1/Wood067_4K-PNG_Roughness.png" id="5_mgjcj"]
 [ext_resource type="Texture2D" uid="uid://7p7khakwmawm" path="res://assets/dice_Untitled_4.png" id="6_3cxdp"]
 [ext_resource type="Texture2D" uid="uid://c3yecirmebk8v" path="res://assets/dice_Untitled_5.png" id="7_vji01"]
+[ext_resource type="Script" uid="uid://bdxx7jfwxx0p3" path="res://scripts/gp_objects/game_camera.gd" id="10_mgjcj"]
 [ext_resource type="PackedScene" uid="uid://n336ri5j6a7g" path="res://scenes/ui_popups/next_turn.tscn" id="15_cv3ex"]
 [ext_resource type="PackedScene" uid="uid://dgygspu31wuq0" path="res://scenes/ui_elements/player_ui_box.tscn" id="16_2livq"]
+[ext_resource type="PackedScene" uid="uid://b1fj0p0fpphuc" path="res://scenes/ui_popups/finish_popup.tscn" id="16_jg0j1"]
+[ext_resource type="PackedScene" uid="uid://qrcbvegd4y5c" path="res://scenes/ui_elements/leaderboard_panel.tscn" id="17_jg0j1"]
+[ext_resource type="Script" uid="uid://cjft3hhgcidws" path="res://scenes/gp_objects/leader_board.gd" id="18_bm3fn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6eotn"]
 sky_top_color = Color(0.02205582, 0.010341879, 0.32349595, 1)
@@ -300,6 +304,8 @@ normal_texture = ExtResource("4_jg0j1")
 heightmap_enabled = true
 heightmap_scale = 1.0
 heightmap_texture = ExtResource("3_2livq")
+uv1_scale = Vector3(-0.32, -0.32, -0.32)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_cv3ex"]
 material = SubResource("StandardMaterial3D_bm3fn")
@@ -368,9 +374,15 @@ cube_mesh = SubResource("ArrayMesh_t4vp1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 cube_mesh = SubResource("ArrayMesh_sru4t")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1614091917]
+[node name="game_camera" type="Camera3D" parent="." unique_id=1614091917]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 0, 1.5, 0.375)
 fov = 98.0
+script = ExtResource("10_mgjcj")
+should_position = Vector3(0, 1.5, 0.375)
+follow_speed = 3.0
+camera_acceleration = 2.0
+should_rotation = Vector3(-1.3089969, 0, 0)
+r_camera_acceleration = 0.5
 
 [node name="walls" type="Node3D" parent="." unique_id=970851136]
 
@@ -544,3 +556,39 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_agjbl")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gbmp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3cxdp")
 action_mode = 0
+
+[node name="round_finished" parent="." unique_id=675999997 instance=ExtResource("16_jg0j1")]
+
+[node name="leader_board" type="Node3D" parent="." unique_id=1976480896]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.125, 0.75)
+script = ExtResource("18_bm3fn")
+
+[node name="MeshInstance3D" parent="leader_board" unique_id=668704167 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 1.9000002)
+
+[node name="MeshInstance3D2" parent="leader_board" unique_id=2051504037 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 1.7000002)
+
+[node name="MeshInstance3D3" parent="leader_board" unique_id=1572473635 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 1.4999999)
+
+[node name="MeshInstance3D4" parent="leader_board" unique_id=426478723 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 1.3000001)
+
+[node name="MeshInstance3D5" parent="leader_board" unique_id=70384923 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 2.7000003)
+
+[node name="MeshInstance3D6" parent="leader_board" unique_id=1857663214 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 2.5)
+
+[node name="MeshInstance3D7" parent="leader_board" unique_id=1762751823 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 2.3000002)
+
+[node name="MeshInstance3D8" parent="leader_board" unique_id=832861460 instance=ExtResource("17_jg0j1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.375, 2.1)
+
+[node name="cam_default_position" type="Marker3D" parent="." unique_id=1792140192]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 1.5, 0.375)
+
+[node name="cam_leaderboard_postition" type="Marker3D" parent="." unique_id=248769120]
+transform = Transform3D(1, 0, 0, 0, 0, 0.99999994, 0, -0.99999994, 0, 0, 1.5, 2.5)

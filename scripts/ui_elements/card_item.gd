@@ -5,15 +5,19 @@ extends Control
 @export var row: Dictionary
 @export var read_only: bool
 @export var has_changed = false
+var finished = false
 var text = ""
 
 func _ready() -> void:
 	if color == Color.BLACK:
 		$button.material.set_shader_parameter("black", true)
+		$final.material.set_shader_parameter("black", true)
 	else:
 		$button.material.set_shader_parameter("shift_amount", color.h * 360)
+		$final.material.set_shader_parameter("shift_amount", color.h * 360)
 
 func update():
+	finished = false
 	$button.add_theme_font_size_override("font_size", 32)
 	has_changed = false
 	$button.text = str(row[color_name].number)
@@ -56,4 +60,13 @@ func _on_button_up() -> void:
 	_on_toggled($button.button_pressed)
 
 func _process(delta: float) -> void:
-	text = $button.text
+	text = $button.text if !finished else $final/final_number.text
+
+func finish():
+	if $button.button_pressed == false:
+		finished = true
+		$final/final_number.text = str(GameStateHandler.current_dice_set[color_name] if GameStateHandler.current_dice_set[color_name] <= row[color_name].number else 0)
+		while $button.modulate.a != 1.0:
+			$button.modulate.a = move_toward($button.modulate.a, 1.0, get_process_delta_time())
+			await get_tree().process_frame
+		$AnimationPlayer.play("open")

@@ -5,6 +5,8 @@ extends Control
 
 @export var interactable = false
 
+signal finish_card
+
 var changes = 0
 
 func update():
@@ -40,13 +42,28 @@ func finalize():
 func _on_finish_button_pressed() -> void:
 	finalize()
 	finished = true
-	self.modulate.a = 0.8
+	var is_every_finished = true
+	for i in player.row_states[player.current_row]:
+		if player.row_states[player.current_row][i].set_value == -1: is_every_finished = false
+	if is_every_finished: finish_card.emit()
 	$HFlowContainer.position.x = 32
 	$finish_button.visible = false
-	self.process_mode = Node.PROCESS_MODE_DISABLED
+	for i in $HFlowContainer.get_children():
+		i.read_only = true
 
 func _process(delta: float) -> void:
-	var should_be_visible = false
+	if !finished:
+		var should_be_visible = false
+		for i in $HFlowContainer.get_children():
+			if i.has_changed: should_be_visible = true
+		if should_be_visible != $finish_button.visible: $finish_button.visible = should_be_visible
+	else:
+		$finish_button.visible = false
+func finish():
 	for i in $HFlowContainer.get_children():
-		if i.has_changed: should_be_visible = true
-	if should_be_visible != $finish_button.visible: $finish_button.visible = should_be_visible
+		i.finish()
+		await get_tree().process_frame
+		finalize()
+		await get_tree().process_frame
+		
+		

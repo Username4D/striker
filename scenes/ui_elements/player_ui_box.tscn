@@ -65,3 +65,5 @@ offset_bottom = -16.0
 [node name="pointer_position" type="Marker2D" parent="." unique_id=149982729]
 visible = false
 position = Vector2(128, 96)
+
+[connection signal="finish_card" from="player_card" to="." method="_on_player_card_finish_card"]

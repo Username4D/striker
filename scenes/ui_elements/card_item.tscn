@@ -33,6 +33,71 @@ border_width_right = 8
 border_width_bottom = 8
 border_color = Color(0.41, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_dc7un"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("final:size:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("final:size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_cpg8d"]
+resource_name = "open"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("final:size:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 64, -0.00016666666, -10.666667, 0, 0, 64, -0.1665, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0009999999, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("final:size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 2.5333333, -186.5, 0, -0.00016666666, 0, 0, 0, 64, -0.3, -65.5, 0, 0),
+"times": PackedFloat32Array(0, 0.0009999999, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dg8f"]
+_data = {
+&"RESET": SubResource("Animation_dc7un"),
+&"open": SubResource("Animation_cpg8d")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cv3ex"]
+resource_local_to_scene = true
+shader = ExtResource("1_dc7un")
+shader_parameter/shift_amount = 0.0
+shader_parameter/black = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ka64"]
+font_size = 32
+
 [node name="card_item" type="Control" unique_id=594250340]
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
@@ -67,6 +132,24 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_7ka64")
 toggle_mode = true
 text = "1"
 autowrap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1862935144]
+libraries/ = SubResource("AnimationLibrary_8dg8f")
+
+[node name="final" type="ColorRect" parent="." unique_id=1758523466]
+clip_children = 2
+material = SubResource("ShaderMaterial_cv3ex")
+layout_mode = 0
+color = Color(1, 0, 0, 1)
+
+[node name="final_number" type="Label" parent="final" unique_id=779439221]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+text = "1"
+label_settings = SubResource("LabelSettings_7ka64")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_down" from="button" to="." method="_on_button_down"]
 [connection signal="button_up" from="button" to="." method="_on_button_up"]

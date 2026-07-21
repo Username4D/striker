@@ -11,6 +11,8 @@ var current_seat = 0
 func dice_add(): finished_dice += 1
 func redice_add(): reroll_finished_dice += 1 
 
+signal round_completed
+
 func turn():
 	$ui_boxes.get_child(current_seat).show_component("your_turn_label", true)
 	$roll_button.visible = true
@@ -65,6 +67,23 @@ func turn():
 	while !check_all($ui_boxes.get_children(), "card_finished"):
 		await get_tree().process_frame
 	
+	var finish = false
+	
+	for i in $ui_boxes.get_children():
+		if i.has_finished: finish = true
+	
+	await get_tree().process_frame
+	
+	if finish:
+		$round_finished.play("round finished")
+		await $round_finished.animation_finished
+		await get_tree().create_timer(0.5).timeout
+		for i in $ui_boxes.get_children():
+			i.finish()
+		
+		await get_tree().create_timer(2).timeout
+		round_completed.emit()
+		return
 	current_seat += 1
 	if current_seat >= $ui_boxes.get_child_count():
 		current_seat = 0
@@ -76,6 +95,20 @@ func turn():
 	$"popups/next turn".play("next_turn")
 	await $"popups/next turn".animation_finished
 	turn()
+
+func play_round():
+	$ui_boxes.visible = true
+	turn()
+	await round_completed
+	for i in PlayerHandler.players:
+		i.finish_round()
+	$ui_boxes.visible = false
+	$game_camera.should_position = $cam_leaderboard_postition.position
+	$game_camera.should_rotation = $cam_leaderboard_postition.rotation
+	
+	await get_tree().create_timer(1.5).timeout
+	$leader_board.update_leaderboard()
+	
 	
 func _ready() -> void:
 	await get_tree().process_frame
@@ -86,7 +119,7 @@ func _ready() -> void:
 	for i in $ui_boxes.get_children():
 		if i.player == null:
 			i.queue_free()
-	turn()
+	play_round()
 
 func check_all(node_array: Array[Node], property_name):
 	for i in node_array:

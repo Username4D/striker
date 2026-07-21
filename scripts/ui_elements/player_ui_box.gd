@@ -4,6 +4,7 @@ extends Panel
 signal do_reroll(reroll: bool)
 @export var card_finished: bool
 @export var pointer_position: Vector2
+@export var has_finished = false
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -26,3 +27,10 @@ func show_component(component_name: String, show_c: bool, _interactable: bool = 
 	for i in self.get_children():
 		if i.visible == true: should_show = true
 	self.visible = should_show
+
+func finish():
+	$player_card.finish()
+
+
+func _on_player_card_finish_card() -> void:
+	has_finished = true

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://qrcbvegd4y5c"]
+
+[ext_resource type="Texture2D" uid="uid://bihpox7jlhei8" path="res://assets/materials/wood_1/Wood067_4K-PNG_Color.png" id="1_ujw4p"]
+[ext_resource type="Texture2D" uid="uid://be76pk2r5ntxa" path="res://assets/materials/wood_1/Wood067_4K-PNG_Displacement.png" id="2_hfpda"]
+[ext_resource type="Texture2D" uid="uid://cpk2a7t6xjohm" path="res://assets/materials/wood_1/Wood067_4K-PNG_NormalGL.png" id="3_x1q22"]
+[ext_resource type="Texture2D" uid="uid://bn36hl5h0g0te" path="res://assets/materials/wood_1/Wood067_4K-PNG_Roughness.png" id="4_463ab"]
+[ext_resource type="Script" uid="uid://chj0s1r70kem4" path="res://scripts/ui_elements/leaderboard_panel.gd" id="5_hfpda"]
+[ext_resource type="PackedScene" uid="uid://cag0r5i11a1m5" path="res://scenes/ui_elements/star_gain_animation_viewport.tscn" id="6_x1q22"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31id5"]
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = ExtResource("1_ujw4p")
+roughness_texture = ExtResource("4_463ab")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("3_x1q22")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("2_hfpda")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ka64"]
+material = SubResource("StandardMaterial3D_31id5")
+size = Vector3(20, 1, 1.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ka64"]
+size = Vector2(20, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ig3r7"]
+viewport_path = NodePath("star_gain_animation_viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05msn"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_ig3r7")
+
+[node name="leaderboard_card" type="MeshInstance3D" unique_id=668704167]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_7ka64")
+script = ExtResource("5_hfpda")
+
+[node name="player_name" type="Label3D" parent="." unique_id=1012228003]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -9.5, 0.51, 0)
+pixel_size = 0.02
+text = "PLAYER_NAME"
+font_size = 33
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="score" type="Label3D" parent="." unique_id=662808924]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 9.5, 0.51, 0)
+pixel_size = 0.02
+text = "000"
+font_size = 33
+outline_size = 0
+horizontal_alignment = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2080094847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511, 0)
+mesh = SubResource("PlaneMesh_7ka64")
+surface_material_override/0 = SubResource("StandardMaterial3D_05msn")
+
+[node name="star_gain_animation_viewport" parent="." unique_id=2016920105 instance=ExtResource("6_x1q22")]
