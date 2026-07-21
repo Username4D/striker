@@ -54,7 +54,7 @@ func turn():
 		while reroll_finished_dice != reroll_dice_amount:
 			await get_tree().process_frame
 		for i in $dice.get_children():
-			i.thrown.disconnect(redice_add)
+			if i.thrown.has_connections(): i.thrown.disconnect(redice_add)
 	
 	GameStateHandler.current_dice_set = {}
 	for i in $dice.get_children():
