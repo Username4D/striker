@@ -73,3 +73,5 @@ func finish():
 			$button.modulate.a = move_toward($button.modulate.a, 1.0, get_process_delta_time())
 			await get_tree().process_frame
 		$AnimationPlayer.play("open")
+		await get_tree().process_frame
+		self.get_parent().get_parent().player.row_states[self.get_parent().get_parent().player.current_row][color_name].set_value = int($final/final_number.text)
