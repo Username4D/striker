@@ -51,7 +51,7 @@ func _on_finish_button_pressed() -> void:
 	$finish_button.visible = false
 	for i in $HFlowContainer.get_children():
 		i.read_only = true
-		i.process_mode = Node.PROCESS_MODE_DISABLED
+		i.get_node("button").process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(delta: float) -> void:
 	if !finished:

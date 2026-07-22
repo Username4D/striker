@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bn36hl5h0g0te" path="res://assets/materials/wood_1/Wood067_4K-PNG_Roughness.png" id="Roughness"]
 
 [resource]
-albedo_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
 albedo_texture = ExtResource("Color")
 roughness_texture = ExtResource("Roughness")
 roughness_texture_channel = 4
@@ -15,3 +14,5 @@ normal_texture = ExtResource("NormalGL")
 heightmap_enabled = true
 heightmap_scale = 1.0
 heightmap_texture = ExtResource("Displacement")
+uv1_scale = Vector3(-0.32, -0.32, -0.32)
+uv1_triplanar = true

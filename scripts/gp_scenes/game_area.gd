@@ -108,6 +108,13 @@ func play_round():
 	
 	await get_tree().create_timer(1.5).timeout
 	$leader_board.update_leaderboard()
+	await $leader_board.update_completed
+	await get_tree().create_timer(2).timeout
+	
+	$game_camera.should_position = $cam_results_postition.position
+	$game_camera.should_rotation = $cam_results_postition.rotation
+	await get_tree().create_timer(3).timeout
+	$result_showcase.show_animation()
 	
 	
 func _ready() -> void:
