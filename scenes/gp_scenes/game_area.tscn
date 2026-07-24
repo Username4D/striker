@@ -464,15 +464,15 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.6
 mesh = SubResource("BoxMesh_cv3ex")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="wall_meshes" unique_id=1253604603]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, 3.0625)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.875, 0.125, 3.1875)
 mesh = SubResource("BoxMesh_cv3ex")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="wall_meshes" unique_id=1596262807]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.375, 0.125, 3.0625)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.375, 0.125, 3.1875)
 mesh = SubResource("BoxMesh_cv3ex")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="wall_meshes" unique_id=1064088592]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, 3.0625)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.625, 0.125, 3.1875)
 mesh = SubResource("BoxMesh_cv3ex")
 
 [node name="popups" type="Node2D" parent="." unique_id=719061562]

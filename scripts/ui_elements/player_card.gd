@@ -9,6 +9,7 @@ signal finish_card
 
 var changes = 0
 
+
 func update():
 	$HFlowContainer.position.x = 0
 	$finish_button.visible = false
@@ -52,6 +53,7 @@ func _on_finish_button_pressed() -> void:
 	for i in $HFlowContainer.get_children():
 		i.read_only = true
 		i.get_node("button").process_mode = Node.PROCESS_MODE_DISABLED
+
 
 func _process(delta: float) -> void:
 	if !finished:

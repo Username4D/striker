@@ -17,7 +17,10 @@ func _ready() -> void:
 		$final.material.set_shader_parameter("shift_amount", color.h * 360)
 
 func update():
+	$AnimationPlayer.play("RESET")
+	$button.scale = Vector2.ONE
 	$button.process_mode = Node.PROCESS_MODE_INHERIT
+	$button.button_pressed = false
 	finished = false
 	$button.add_theme_font_size_override("font_size", 32)
 	has_changed = false
@@ -65,12 +68,12 @@ func _process(delta: float) -> void:
 	
 func finish():
 	$button.process_mode = Node.PROCESS_MODE_DISABLED
+	while $button.modulate.a != 1.0:
+			$button.modulate.a = move_toward($button.modulate.a, 1.0, get_process_delta_time())
+			await get_tree().process_frame
 	if $button.button_pressed == false:
 		finished = true
 		$final/final_number.text = str(GameStateHandler.current_dice_set[color_name] if GameStateHandler.current_dice_set[color_name] <= row[color_name].number else 0)
-		while $button.modulate.a != 1.0:
-			$button.modulate.a = move_toward($button.modulate.a, 1.0, get_process_delta_time())
-			await get_tree().process_frame
 		print("should_play_animation")
 		$AnimationPlayer.play("open")
 		await get_tree().process_frame

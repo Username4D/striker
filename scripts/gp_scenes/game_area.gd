@@ -7,6 +7,7 @@ var reroll_finished_dice = 0
 var reroll_dice_amount = 0
 
 var current_seat = 0
+var round_count = 0
 
 func dice_add(): finished_dice += 1
 func redice_add(): reroll_finished_dice += 1 
@@ -74,6 +75,11 @@ func turn():
 	
 	await get_tree().process_frame
 	
+	current_seat += 1
+	if current_seat >= $ui_boxes.get_child_count():
+		current_seat = 0
+	
+	
 	if finish:
 		$round_finished.play("round finished")
 		await $round_finished.animation_finished
@@ -83,13 +89,14 @@ func turn():
 		
 		await get_tree().create_timer(2).timeout
 		round_completed.emit()
+		for i in $ui_boxes.get_children():
+			i.show_component("player_card", false)
+	
 		return
-	current_seat += 1
-	if current_seat >= $ui_boxes.get_child_count():
-		current_seat = 0
 	
 	for i in $ui_boxes.get_children():
 		i.show_component("player_card", false)
+	
 	
 	$"popups/next turn".next_player_position = $ui_boxes.get_child(current_seat).pointer_position
 	$"popups/next turn".play("next_turn")
@@ -103,6 +110,8 @@ func play_round():
 	for i in PlayerHandler.players:
 		i.finish_round()
 	$ui_boxes.visible = false
+	for i in $leader_board.get_children():
+		i.reset()
 	$game_camera.should_position = $cam_leaderboard_postition.position
 	$game_camera.should_rotation = $cam_leaderboard_postition.rotation
 	
@@ -110,11 +119,23 @@ func play_round():
 	$leader_board.update_leaderboard()
 	await $leader_board.update_completed
 	await get_tree().create_timer(2).timeout
-	
-	$game_camera.should_position = $cam_results_postition.position
-	$game_camera.should_rotation = $cam_results_postition.rotation
-	await get_tree().create_timer(3).timeout
-	$result_showcase.show_animation()
+	round_count += 1
+	if round_count == 2:
+		$game_camera.should_position = $cam_results_postition.position
+		$game_camera.should_rotation = $cam_results_postition.rotation
+		await get_tree().create_timer(3).timeout
+		$result_showcase.show_animation()
+		return
+	else:
+		for i in $ui_boxes.get_children():
+			i.has_finished = false
+		play_round()
+		$game_camera.should_position = $cam_default_position.position
+		$game_camera.should_rotation = $cam_default_position.rotation
+		for i in PlayerHandler.players:
+			i.current_row += 1
+		await get_tree().create_timer(3).timeout
+		
 	
 	
 func _ready() -> void:

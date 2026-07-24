@@ -36,3 +36,6 @@ func _process(delta: float) -> void:
 	$score.text = str(score)
 	if player: $player_name.text = str(player.screen_position)
 	self.position.z = move_toward(self.position.z, 1.3 + float(self.get_parent().leaderboard.find(self)) / 5, delta * 0.5)
+
+func reset():
+	$star_gain_animation_viewport/star_gain_animation/AnimationPlayer.play("RESET")
